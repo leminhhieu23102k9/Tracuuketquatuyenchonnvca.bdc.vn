@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tra Cứu Kết Quả Tuyển Chọn CAND | BDC</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #141E30, #243B55);
+            color: white;
+            text-align: center;
+            padding: 0;
+            margin: 0;
+        }
+
+        .container {
+            margin-top: 40px;
+            width: 90%;
+            max-width: 450px;
+            margin-left: auto;
+            margin-right: auto;
+            background: rgba(255, 255, 255, 0.08);
+            padding: 25px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+        }
+
+        .logo {
+            width: 120px;
+            height: auto;
+            margin-bottom: 10px;
+        }
+
+               .title {
+            font-size: 26px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .notice {
+            background: rgba(255, 165, 0, 0.15);
+            padding: 10px;
+            border-radius: 8px;
+            font-size: 15px;
+            margin-bottom: 15px;
+            color: #ffcc66;
+            font-weight: bold;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            border-radius: 8px;
+            border: none;
+            margin-top: 10px;
+            font-size: 16px;
+            outline: none;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 15px;
+            background: #ff9933;
+            border: none;
+            border-radius: 8px;
+            font-size: 17px;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        button:hover {
+            background: #ffaa44;
+        }
+
+        .result {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .pass { color: #00ff88; }
+        .fail { color: #ff4444; }
+
+        .certificate {
+            margin-top: 20px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid #ffcc66;
+            border-radius: 12px;
+            color: #ffcc66;
+            font-size: 16px;
+            font-weight: bold;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+
+        <!-- LOGO CHÍNH -->
+        <img src="logo.png" class="logo" alt="Logo">
+
+        <div class="title">Tra Cứu Kết Quả Tuyển Chọn CAND | BDC</div>
+
+        <div class="notice">Lưu Ý: Nhập đúng username roblox để tra cứu chính xác.</div>
+
+        <input type="text" id="nameInput" placeholder="Nhập username roblox của bạn...">
+        <button onclick="checkResult()">Xác nhận</button>
+
+        <div id="result" class="result"></div>
+
+        <div id="certificate" class="certificate"></div>
+    </div>
+
+    <script>
+        const data = {
+            "baoroblox9002": "Đậu",
+            "HainAccClone12": "Đậu",
+            "roc70c": "Rớt",
+            "HainAccClone12": "Đậu",
+            "HainAccClone12": "Đậu",
+            "LuanluBnnn": "Đậu"
+        };
+
+        function checkResult() {
+            const name = document.getElementById("nameInput").value.trim();
+            const resultBox = document.getElementById("result");
+            const certificate = document.getElementById("certificate");
+
+            certificate.style.display = "none";
+            certificate.innerHTML = "";
+
+            if (name === "") {
+                resultBox.innerHTML = "❗ Vui lòng nhập username roblox!";
+                resultBox.className = "result fail";
+                return;
+            }
+
+            if (data[name]) {
+                if (data[name] === "Đậu") {
+                    resultBox.innerHTML = `✅ ${name} đã <span class="pass">ĐẬU</span>`;
+                    resultBox.className = "result pass";
+
+                    certificate.style.display = "block";
+                    certificate.innerHTML = `
+                        🎉 <b>CHỨNG NHẬN TRÚNG TUYỂN</b> 🎉<br><br>
+                        Họ tên: <b>${name}</b><br>
+                        Đã chính thức TRÚNG TUYỂN trong kỳ xét duyệt.<br><br>
+                        ✔ Ngày cấp: ${new Date().toLocaleDateString('vi-VN')}<br>
+                        ✔ Đơn vị: Hội Đồng Tuyển Chọn CAND - BDC<br><br>
+                        ⭐ Chúc mừng bạn! ⭐
+                    `;
+                } else {
+                    resultBox.innerHTML = `❌ ${name} đã <span class="fail">RỚT</span>`;
+                    resultBox.className = "result fail";
+                }
+            } else {
+                resultBox.innerHTML = "⚠ Không tìm thấy tên trong hệ thống";
+                resultBox.className = "result fail";
+            }
+        }
+    </script>
+
+</body>
+</html>
+
+
+
